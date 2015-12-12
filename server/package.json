@@ -1,0 +1,28 @@
+{
+  "name": "Hackkings2015",
+  "contributors": [
+    {
+      "name": "Andrei Muntean",
+      "email": "andrei.muntean.dev@gmail.com"
+    },
+    {
+      "name": "Dragos Alex Radu",
+      "email": "alex.radu.1000@gmail.com"
+    },
+    {
+      "name": "Geanina Hinta",
+      "email": "geaninahinta@yahoo.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andreimuntean/GreatUniHack2015"
+  },
+  "dependencies": {
+    "express": "*",
+    "justgiving-apiclient": "*",
+    "mysql": "*"
+  },
+  "private": true,
+  "license": "MIT"
+}
