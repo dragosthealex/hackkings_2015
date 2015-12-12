@@ -68,7 +68,7 @@ app.get('/zones', function(req, res){
 
 });
 
-app.get('/zone/:id', function(req, res){
+app.get('/zones/:id', function(req, res){
 
 });
 
