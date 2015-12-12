@@ -6,7 +6,7 @@ drop table if exists ZoneCharities;
 drop table if exists ZoneScores;
 
 create table Charities (
-	Id int not null,
+	Id int not null auto_increment,
 	Name varchar(128) not null,
 	Description varchar(2048) not null,
 	Url varchar(2048),
@@ -15,11 +15,11 @@ create table Charities (
 	primary key (Id)
 );
 
-create table Cities {
+create table Cities (
 	Id int not null auto_increment,
 	Name varchar(64) not null unique,
 	primary key (Id)
-};
+);
 
 create table Users (
 	Username varchar(32) not null,
@@ -37,19 +37,19 @@ create table Zones (
 	primary key (Id)
 );
 
-create table ZoneCharities {
+create table ZoneCharities (
 	ZoneId int not null,
 	CharityId int not null,
 	primary key (ZoneId, CharityId),
 	foreign key (CharityId) references Charities(Id),
 	foreign key (ZoneId) references Zones(Id)
-};
+);
 
-create table ZoneScores {
+create table ZoneScores (
 	Username varchar(32) not null,
 	ZoneId int not null,
 	Score int not null default 0,
 	primary key (Username, ZoneId),
 	foreign key (Username) references Users(Username),
 	foreign key (ZoneId) references Zones(Id)
-};
+);
