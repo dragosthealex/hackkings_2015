@@ -9,54 +9,78 @@ var client = mysql.createConnection({
     database: process.env.DATABASE_NAME
 });
 
-var createUser = function(username, email, password) {
-    var query = 'insert into Users (username, email, password) VALUES(?, ?, ?)';
-    var parameters = [username, email, password];
+var getUsers = function(callback){
+    var query = 'select * from Users';
 
-    client.query(query, parameters, function(error, result) {
-        // To be continued.
+    client.query(query, function(error, result){
+        if (!error) {
+            var users = result.map(function(key){
+                return result[key];
+            });
+        }
+
+        callback(error, users);
     });
 };
 
-var login = function(username, password){
-    var query = 'select from Users where username = ? and password = ?';
-    var parameters = [username, password];
-
-    client.query(query, parameters, function(error, result) {
-        // WTF Am I doing O.o
-    });
-};
-
-var getUser = function(username){
-    var query = 'select from Users where username = ?';
+var getUser = function(callback, username){
+    var query = 'select * from Users where username = ?';
     var parameters = [username];
 
     client.query(query, parameters, function(error, result){
-        // What Andrei says...
+        if (!error) {
+            var user = result[0];
+        }
+
+        callback(error, user);
     }); 
 };
 
-var getUsers = function(){
-    var query = 'select from Users';
+var createUser = function(callback, username, email, password){
+    var query = 'insert into Users (username, email, password) VALUES(?, ?, ?)';
+    var parameters = [username, email, password];
 
-    client.query(query, function(error, result){
-        // I can see you!
+    client.query(query, parameters, function(error, result){
+        callback(error);
     });
 };
 
-var getZone = function(id){
-    var query = 'select from Zones where id = ?';
+var login = function(callback, username, password){
+    var query = 'select * from Users where username = ? and password = ?';
+    var parameters = [username, password];
+
+    client.query(query, parameters, function(error, result) {
+        if (!error) {
+            var user = result[0];
+        }
+
+        callback(error, user);
+    });
+};
+
+var getZones = function(callback){
+    var query = 'select * from Zones';
+
+    client.query(query, function(error, result){
+        if (!error) {
+            var zones = result.map(function(key){
+                return result[key];
+            });
+        }
+
+        callback(error, zones);
+    });
+};
+
+var getZone = function(callback, id){
+    var query = 'select * from Zones where id = ?';
     var parameters = [id];
 
     client.query(query, parameters, function(error, result){
-        // This is not a joke!
-    })
-}
+        if (!error) {
+            var zone = result[0];
+        }
 
-var getZones = function(){
-    var query = 'select from Zones';
-
-    client.query(query, function(error, result){
-        // I can see you O.o!
+        callback(error, zone);
     });
 };
