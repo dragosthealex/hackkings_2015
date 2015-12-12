@@ -1,0 +1,378 @@
+/* Empty. Add your own CSS if you like */
+
+map {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.scroll {
+  height: 100%;
+}
+
+/* Empty. Add your own CSS if you like */
+ion-content {
+  padding-top: 20px;
+  background-color: #efefef;
+}
+
+.modal-backdrop {
+  background-color: transparent;
+}
+
+.pull-left {
+  float: left;
+}
+
+.margin0 {
+  margin: 0 !important;
+}
+
+.pull-right {
+  float: right;
+}
+
+.center {
+  text-align: center;
+  margin: auto;
+}
+
+.stack-buttons {
+  margin-top: 50px;
+  width: 70%;
+}
+
+.stack-buttons .button {
+  margin-bottom: 16px;
+  height: 50px;
+  width: 100%;
+  border: none;
+}
+
+.container {
+  width: 95%;
+  margin: 0 auto 100px;
+}
+
+.hidden-anchor {
+  visibility:hidden;
+  margin-bottom:40px;
+  display:block;
+  height:1px;
+}
+
+.container .frame-previous .frame{
+  margin-top: -20px;
+  overflow: visible;
+}
+.container .frame.journey-frame .row {
+  margin: 0 0 10px;
+  padding: 0 10px;
+}
+
+.container .frame.journey-frame .button {
+  width: 70%;
+}
+
+.container .frame.journey-frame .card-footer {
+}
+
+.row.fading-row {
+  position: absolute;
+  background-color: rgba(239, 239, 239, 0.55);
+  height: 30px;
+  margin: 0;
+  padding: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.repeat.reroute {
+  text-align: left;
+}
+
+.repeat.reroute .item h2 {
+  font-size: 20px;
+}
+
+.container.search-container {
+  margin-top: 50px;
+}
+
+.container.search-container .row{
+  margin-bottom: 16px;
+}
+
+li.ng-binding:hover {
+  background-color: rgba(102, 197, 53, 0.6);
+}
+
+.previous-text {
+  width: 100%;
+  /*border: 1px solid rgba(50, 50, 50, 0.15);*/
+  height: 120px;
+  padding: 10px;
+  /* box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.5); */
+  border-radius: 10px;
+  background-color: white;
+}
+
+.previous-total {
+  font-size: 40px;
+  margin: auto;
+  text-align: center;
+}
+
+.item.previous h2 {
+  /*font-size: 25px;*/
+}
+
+.participants {
+  overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.participants span {
+  float: left;
+  padding:2.5px 10px;
+  margin:2px 5px;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #2C367E;
+  font-size: 12px;
+  color: white  ;
+}
+
+.participants .plus {
+  padding: 0 5px 2px;
+  border-radius: 20px;
+  background-color: #2C367E;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 4px;
+  color: #b2b2b2;
+}
+
+.col-50 {
+  width: 50%;
+}
+
+.bar .title2 {
+  z-index: 0;
+  overflow: hidden;
+  margin: 0 10px;
+  min-width: 30px;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 44px;
+}
+
+.the-x {
+  border-radius: 15px;
+  padding: 0 5px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #B2B2B2;
+  cursor: pointer;
+}
+
+.add-message {
+  width:100%;
+  height:100px;
+  resize:none;
+  padding:1em;
+  border-bottom: 1px solid #757575;
+}
+
+.add-message:focus {
+  border-bottom: 2px solid #5264AE;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+
+/** NICE FORMS **/
+.card .group        { 
+  position:relative; 
+  margin-bottom:45px; 
+}
+.card input         {
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:100px;
+  border:none;
+  border-bottom:1px solid #757575;
+}
+.card input:focus     { outline:none; }
+
+/* LABEL ======================================= */
+.card label          {
+  color:#999; 
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+
+/* active state */
+.card input:focus ~ label, .card input:valid ~ label    {
+  top:-20px;
+  font-size:14px;
+  color:#5264AE;
+}
+
+/* BOTTOM barrS ================================= */
+.card .barr  { position:relative; display:block; width:100px; }
+.card .barr:before, .card .barr:after   {
+  content:'';
+  height:2px; 
+  width:0;
+  bottom:1px; 
+  position:absolute;
+  background:#5264AE; 
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+.card .barr:before {
+  left:50%;
+}
+.card .barr:after {
+  right:50%; 
+}
+
+/* active state */
+.card input:focus ~ .barr:before, .card input:focus ~ .barr:after {
+  width:50%;
+}
+
+/* HIGHLIGHTER ================================== */
+.card .highlight {
+  position:absolute;
+  height:60%; 
+  width:70px; 
+  top:25%; 
+  left:0;
+  pointer-events:none;
+  opacity:0.5;
+}
+
+/* active state */
+.card input:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+  from { background:#5264AE; }
+  to  { width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+  from { background:#5264AE; }
+  to  { width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+  from { background:#5264AE; }
+  to  { width:0; background:transparent; }
+}
+
+/** Material Button **/
+/* Button */
+.material.button {
+  display: inline-block;
+  position: relative;
+  width: 120px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 2px;
+  font-size: 0.9em;
+  background-color: #fff;
+  color: #646464;
+}
+
+.material.button > paper-ripple {
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.material.button.narrow {
+  width: 60px;
+}
+
+.material.button.grey {
+  background-color: #eee;
+}
+
+.material.button.blue {
+  background-color: #4285f4;
+  color: #fff;
+}
+
+.material.button.green {
+  background-color: #0f9d58;
+  color: #fff;
+}
+
+.material.button.raised {
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 0.2s;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+.material.button.raised:active {
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+  transition-delay: 0s;
+}
+
+.participants span.pula-mea {
+  background-color: transparent;
+  color: #2C367E;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.participants span.pula-mea a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.google-button {
+  display: inline-block;
+  background: #4285f4;
+  color: white;
+  width: 190px;
+  border-radius: 5px;
+  white-space: nowrap;
+}
+
+.google-button .icon{
+  background: url('../img/google.png') transparent 5px 50% no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  width: 42px;
+  height: 42px;
+  border-right: #2265d4 1px solid;
+}
+
+.google-button .buttonText {
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 42px;
+  padding-right: 42px;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+}
