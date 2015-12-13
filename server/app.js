@@ -1,4 +1,5 @@
 var app = require('express')();
+var cors = require('cors');
 var databaseService = require('./services/database-service');
 var responseHelper = require('./helpers/response-helper');
 
@@ -33,6 +34,8 @@ app.get('/users', function(req, res){
     databaseService.getUsers(function(error, users){
         if (error){
             responseHelper.sendResponse(res, null, 500)
+
+            return;
         }
         
         responseHelper.sendResponse(res, users);
@@ -90,6 +93,8 @@ app.get('/zones', function(req, res){
     databaseService.getZones(function(error, zones){
         if (error){
             responseHelper.sendResponse(res, null, 500)
+
+            return;
         }
         
         responseHelper.sendResponse(res, zones);
