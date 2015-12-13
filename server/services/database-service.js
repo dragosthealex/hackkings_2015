@@ -89,6 +89,22 @@ var getZone = function(callback, id){
     });
 };
 
+var getCharities = function(callback){
+
+};
+
+var getCharity = function(callback, id){
+
+};
+
+var getCities = function(callback){
+
+};
+
+var getCity = function(callback, id){
+
+};
+
 module.exports = {
     getUsers: getUsers,
     getUser: getUser,
@@ -96,7 +112,8 @@ module.exports = {
     login: login,
     getZones: getZones,
     getZone: getZone,
+    getCharities: getCharities,
+    getCharity: getCharity,
     getCities: getCities,
-    getCity: getCity,
-
+    getCity: getCity
 };
