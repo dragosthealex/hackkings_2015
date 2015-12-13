@@ -89,7 +89,7 @@ app.get('/register/:username/:email/:password/:confirm/:cityId', function(req, r
             "User": {
                 "Username": username,
                 "Email": email,
-                "CityId": cityId,
+                "CityId": cityId
             },
             "Token": ""
         });
