@@ -38,9 +38,9 @@ var getUser = function(callback, username){
     }); 
 };
 
-var createUser = function(callback, username, email, password){
-    var query = 'insert into Users (username, email, password) VALUES(?, ?, ?)';
-    var parameters = [username, email, password];
+var createUser = function(callback, username, email, password, cityId){
+    var query = 'insert into Users (username, email, password, cityId) VALUES(?, ?, ?, ?)';
+    var parameters = [username, email, password, cityId];
 
     client.query(query, parameters, function(error, result){
         callback(error);

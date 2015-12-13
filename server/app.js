@@ -2,6 +2,9 @@ var app = require('express')();
 var databaseService = require('./services/database-service');
 var responseHelper = require('./helpers/response-helper');
 
+// Enables cross-origin resource sharing.
+app.use(cors());
+
 // Makes json objects prettier.
 app.set('json spaces', 4);
 
@@ -58,11 +61,12 @@ app.get('/login/:username/:password', function(req, res){
     }, username, password);
 });
 
-app.get('/register/:username/:email/:password/:confirm', function(req, res){
+app.get('/register/:username/:email/:password/:confirm/:cityId', function(req, res){
     var username = req.params.username;
     var email = req.params.email;
     var password = req.params.password;
     var confirm = req.params.confirm;
+    var cityId = req.params.cityId;
 
     if (confirm != password){
         responseHelper.sendResponse(res, null, 401);
@@ -79,7 +83,7 @@ app.get('/register/:username/:email/:password/:confirm', function(req, res){
         }
 
         responseHelper.sendResponse(res);
-    }, username, email, password);
+    }, username, email, password, cityId);
 });
 
 app.get('/zones', function(req, res){

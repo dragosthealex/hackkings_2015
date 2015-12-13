@@ -114,3 +114,13 @@ insert into Charities values (
     "http://images.sandbox.justgiving.com/image/positivelywomen_logo_large.gif",
     "https://www.justgiving.com/positivelywomen old account"
 );
+
+insert into Cities values (
+    1,
+    "London"
+);
+
+insert into Cities values (
+    1,
+    "Manchester"
+);
