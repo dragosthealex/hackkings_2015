@@ -1,4 +1,5 @@
 var app = require('express')();
+var bodyParser = require('body-parser');
 var cors = require('cors');
 var braintreeService = require('./services/braintree-service');
 var databaseService = require('./services/database-service');
