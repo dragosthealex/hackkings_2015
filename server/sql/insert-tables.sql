@@ -115,32 +115,43 @@ insert into Charities values (
     "https://www.justgiving.com/positivelywomen old account"
 );
 
-insert into Cities values (
-    1,
-    "London"
-);
 
-insert into Cities values (
-    1,
-    "Manchester"
-);
+insert into Cities values (1, "London");
 
-insert into Zones values(
-    32746,
-    21790
-);
+insert into Cities values (2, "Manchester");
 
-insert into Zones values(
-    32747,
-    21790
-);
 
-insert into Zones values(
-    32746,
-    21791
-);
+insert into Zones values(32746, 21790);
 
-insert into Zones values(
-    32747,
-    21791
-);
+insert into Zones values(32747, 21790);
+
+insert into Zones values(32746, 21791);
+
+insert into Zones values(32747, 21791);
+
+
+insert into ZoneCharities values(32746, 21790, 2069);
+
+insert into ZoneCharities values(32746, 21790, 2050);
+
+insert into ZoneCharities values(32746, 21790, 2074);
+
+insert into ZoneCharities values(32746, 21790, 2077);
+
+insert into ZoneCharities values(32746, 21791, 100);
+
+insert into ZoneCharities values(32746, 21791, 102);
+
+insert into ZoneCharities values(32746, 21791, 2002);
+
+insert into ZoneCharities values(32747, 21790, 2010);
+
+insert into ZoneCharities values(32747, 21790, 2013);
+
+insert into ZoneCharities values(32747, 21790, 2021);
+
+insert into ZoneCharities values(32747, 21791, 202);
+
+insert into ZoneCharities values(32747, 21791, 2028);
+
+insert into ZoneCharities values(32747, 21791, 2029);

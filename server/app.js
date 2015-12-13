@@ -13,14 +13,14 @@ app.get('/users/:username', function(req, res){
     var username = req.params.username;
 
     databaseService.getUser(function(error, user){
-        if (error) {
+        if (error){
             responseHelper.sendResponse(res, null, 500);
 
             return;
         }
 
         // Determines whether a user with the specified username exists.
-        if (!user) {
+        if (!user){
             responseHelper.sendResponse(res, null, 404);
 
             return;
@@ -40,6 +40,38 @@ app.get('/users', function(req, res){
         
         responseHelper.sendResponse(res, users);
     });
+});
+
+app.get('/users/:username/score', function(req, res){
+    var username = req.params.username;
+
+    databaseService.getTotalUserScore(function(error, score){
+        if (error){
+            responseHelper.sendResponse(res, null, 500);
+
+            return;
+        }
+
+        // TO-DO.
+
+        responseHelper.sendResponse(res, score);
+    }, username);
+});
+
+app.get('/users/:username/score/:x/:y', function(req, res){
+    var username = req.params.username;
+
+    databaseService.getZoneUserScore(function(error, user){
+        if (error){
+            responseHelper.sendResponse(res, null, 500);
+
+            return;
+        }
+
+        // TO-DO.
+
+        responseHelper.sendResponse(res, user);
+    }, username, x, y);
 });
 
 app.get('/login/:username/:password', function(req, res){
@@ -77,8 +109,8 @@ app.get('/register/:username/:email/:password/:confirm/:cityId', function(req, r
         return;
     }
 
-    databaseService.createUser(function(error) {
-        if (error) {
+    databaseService.createUser(function(error){
+        if (error){
             // A user with this username or email already exists.
             responseHelper.sendResponse(res, null, 409);
 
@@ -106,25 +138,40 @@ app.get('/zones', function(req, res){
     });
 });
 
-app.get('/zones/:id', function(req, res){
-    var id = req.params.id;
-
-    databaseService.getUser(function(error, zone){
+app.get('/zones/:x/:y/challenges', function(req, res){
+    databaseService.getZoneChallenges(function(error, challenges){
         if (error){
-            responseHelper.sendResponse(res, null, 500);
+            responseHelper.sendResponse(res, null, 500)
 
             return;
         }
+        
+        responseHelper.sendResponse(res, challenges);
+    }, x, y);
+});
 
-        // Determines whether a zone with the specified id exists.
-        if (!zone){
-            responseHelper.sendResponse(res, null, 404);
+app.get('/zones/:x/:y/charities', function(req, res){
+    databaseService.getZoneCharities(function(error, charities){
+        if (error){
+            responseHelper.sendResponse(res, null, 500)
 
             return;
         }
+        
+        responseHelper.sendResponse(res, charities);
+    }, x, y);
+});
 
-        responseHelper.sendResponse(res, zone);
-    }, id);
+app.get('/zones/:x/:y/score', function(req, res){
+    databaseService.getZoneScore(function(error, score){
+        if (error){
+            responseHelper.sendResponse(res, null, 500)
+
+            return;
+        }
+        
+        responseHelper.sendResponse(res, score);
+    }, x, y);
 });
 
 app.listen(process.env.PORT || 1234);
