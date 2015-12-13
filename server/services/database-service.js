@@ -1,5 +1,5 @@
 var mysql = require('mysql');
- 
+
 // Connects to the database.
 var client = mysql.createConnection({
     host: process.env.DATABASE_HOST,

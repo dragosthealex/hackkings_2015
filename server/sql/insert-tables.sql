@@ -1,5 +1,17 @@
 insert into Challenges values (
-    1, "Tic Tac Toe", "Lorem ipsum dolor sit amet", "https://www.google.com/"
+    1, "Tic Tac Toe", "Play the classic Tic-Tac-Toe game (also called Noughts and Crosses)!", "https://www.challenge-zone.com/tic-tac-toe"
+);
+
+insert into Challenges values (
+    2, "World of Fightcraft", "Join thousands of mighty heroes in an online world of magic and limitless adventure!", "https://www.challenge-zone.com/world-of-fightcraft"
+);
+
+insert into Challenges values (
+    3, "Blackrock Spire", "Fight your way to the top of Blackrock Spire!", "https://www.challenge-zone.com/blackrock-spire"
+);
+
+insert into Challenges values (
+    4, "Scrabble", "Play the classic game of Scrabble!", "https://www.challenge-zone.com/tic-tac-toe"
 );
 
 
@@ -135,9 +147,29 @@ insert into Zones values(32746, 21791);
 insert into Zones values(32747, 21791);
 
 
-insert into ZoneChallenges values (
-    32746, 21790, 1
-);
+insert into ZoneChallenges values (32746, 21790, 1);
+
+insert into ZoneChallenges values (32746, 21790, 2);
+
+insert into ZoneChallenges values (32746, 21790, 3);
+
+insert into ZoneChallenges values (32746, 21791, 3);
+
+insert into ZoneChallenges values (32746, 21791, 1);
+
+insert into ZoneChallenges values (32746, 21791, 4);
+
+insert into ZoneChallenges values (32747, 21790, 4);
+
+insert into ZoneChallenges values (32747, 21790, 3);
+
+insert into ZoneChallenges values (32747, 21790, 2);
+
+insert into ZoneChallenges values (32747, 21791, 2);
+
+insert into ZoneChallenges values (32747, 21791, 4);
+
+insert into ZoneChallenges values (32747, 21791, 1);
 
 
 insert into ZoneCharities values(32746, 21790, 2069);
