@@ -67,17 +67,11 @@ var getZoneUserScore = function(callback, username, x, y){
 };
 
 var updateZoneUserScore = function(callback, username, x, y, score){
-    var query = 'insert into ZoneScores select ?, ?, ?, 0 from Dual'
-        + ' where not exists (select Username from ZoneScores where username = ?);';
-    var parameters = [username, x, y, username];
+    var query = 'insert into ZoneScores values(?, ?, ?, ?) on duplicate key update Score = ?';
+    var parameters = [username, x, y, score, score];
 
     client.query(query, parameters, function(error, result){
-        query = 'update ZoneScores set Score = ? where Username = ? and ZoneX = ? and ZoneY = ?';
-        parameters = [score, username, x, y];
-
-        client.query(query, parameters, function(error, result){
-            callback(error);
-        });
+        callback(error);
     });
 };
 
