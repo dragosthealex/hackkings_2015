@@ -90,19 +90,61 @@ var getZone = function(callback, id){
 };
 
 var getCharities = function(callback){
+    var query = 'select * from Charities';
 
+    client.query(query, function(error, result){
+        if (!error) {
+            var charities = [];
+
+            for (key in result) {
+                charities.push(result[key]);
+            }
+        }
+
+        callback(error, charities);
+    });
 };
 
 var getCharity = function(callback, id){
+    var query = 'select * from Charities where Id = ?';
+    var parameters = [id];
 
+    client.query(query, parameters, function(error, result){
+        if (!error) {
+            var charity = result[0];
+        }
+
+        callback(error, charity);
+    }); 
 };
 
 var getCities = function(callback){
+    var query = 'select * from Cities';
 
+    client.query(query, function(error, result){
+        if (!error) {
+            var cities = [];
+
+            for (key in result) {
+                cities.push(result[key]);
+            }
+        }
+
+        callback(error, cities);
+    });
 };
 
 var getCity = function(callback, id){
+    var query = 'select * from Cities where Id = ?';
+    var parameters = [id];
 
+    client.query(query, parameters, function(error, result){
+        if (!error) {
+            var city = result[0];
+        }
+
+        callback(error, city);
+    }); 
 };
 
 module.exports = {
