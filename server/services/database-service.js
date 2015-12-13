@@ -14,9 +14,11 @@ var getUsers = function(callback){
 
     client.query(query, function(error, result){
         if (!error) {
-            var users = result.map(function(key){
-                return result[key];
-            });
+            var users = [];
+
+            for (key in result) {
+                users.push(result[key]);
+            }
         }
 
         callback(error, users);
@@ -63,9 +65,11 @@ var getZones = function(callback){
 
     client.query(query, function(error, result){
         if (!error) {
-            var zones = result.map(function(key){
-                return result[key];
-            });
+            var zones = [];
+
+            for (key in result) {
+                zones.push(result[key]);
+            }
         }
 
         callback(error, zones);
@@ -83,4 +87,13 @@ var getZone = function(callback, id){
 
         callback(error, zone);
     });
+};
+
+module.exports = {
+    getUsers: getUsers,
+    getUser: getUser,
+    createUser: createUser,
+    login: login,
+    getZones: getZones,
+    getZone: getZone
 };
