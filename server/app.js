@@ -11,7 +11,7 @@ app.use(cors());
 app.set('json spaces', 4);
 
 app.get('/braintree/token', function(req, res){
-    braintree.getClientToken(function(error, response){
+    braintreeService.getClientToken(function(error, response){
         if (error){
             responseHelper.sendResponse(res, null, 500);
 
@@ -25,7 +25,7 @@ app.get('/braintree/token', function(req, res){
 app.get('/braintree/checkout/:nonce', function(req, res){
     var nonce = req.params.nonce;
 
-    braintree.checkout(function(error, response){
+    braintreeService.checkout(function(error, response){
         if (error){
             responseHelper.sendResponse(res, null, 500);
 
