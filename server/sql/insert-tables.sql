@@ -124,3 +124,23 @@ insert into Cities values (
     1,
     "Manchester"
 );
+
+insert into Zones values(
+    32746,
+    21790
+);
+
+insert into Zones values(
+    32747,
+    21790
+);
+
+insert into Zones values(
+    32746,
+    21791
+);
+
+insert into Zones values(
+    32747,
+    21791
+);

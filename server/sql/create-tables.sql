@@ -31,25 +31,28 @@ create table Users (
 );
 
 create table Zones (
-	Id int not null auto_increment,
 	X int not null,
 	Y int not null,
-	primary key (Id)
+	primary key (X, Y)
 );
 
 create table ZoneCharities (
-	ZoneId int not null,
+	ZoneX int not null,
+	ZoneY int not null,
 	CharityId int not null,
-	primary key (ZoneId, CharityId),
+	primary key (ZoneX, ZoneY, CharityId),
 	foreign key (CharityId) references Charities(Id),
-	foreign key (ZoneId) references Zones(Id)
+	foreign key (ZoneX) references Zones(X),
+	foreign key (ZoneY) references Zones(Y)
 );
 
 create table ZoneScores (
 	Username varchar(32) not null,
-	ZoneId int not null,
+	ZoneX int not null,
+	ZoneY int not null,
 	Score int not null default 0,
-	primary key (Username, ZoneId),
+	primary key (ZoneX, ZoneY, Username),
 	foreign key (Username) references Users(Username),
-	foreign key (ZoneId) references Zones(Id)
+	foreign key (ZoneX) references Zones(X),
+	foreign key (ZoneY) references Zones(Y)
 );
