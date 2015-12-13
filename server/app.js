@@ -57,9 +57,9 @@ app.get('/users/:username/score', function(req, res){
 });
 
 app.get('/users/:username/score/:x/:y', function(req, res){
+    var username = req.params.username;
     var x = req.params.x;
     var y = req.params.y;
-    var username = req.params.username;
 
     databaseService.getZoneUserScore(function(error, score){
         if (error){
@@ -70,6 +70,23 @@ app.get('/users/:username/score/:x/:y', function(req, res){
 
         responseHelper.sendResponse(res, score);
     }, username, x, y);
+});
+
+app.get('/users/:username/score/:x/:y/:score', function(req, res){
+    var username = req.params.username;
+    var x = req.params.x;
+    var y = req.params.y;
+    var score = req.params.score;
+
+    databaseService.updateZoneUserScore(function(error){
+        if (error){
+            responseHelper.sendResponse(res, null, 500);
+
+            return;
+        }
+
+        responseHelper.sendResponse(res);
+    }, username, x, y, score);
 });
 
 app.get('/login/:username/:password', function(req, res){

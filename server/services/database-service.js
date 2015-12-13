@@ -54,10 +54,8 @@ var getTotalUserScore = function(callback, username){
 };
 
 var getZoneUserScore = function(callback, username, x, y){
-    var query = 'select sum(Score) from Users users join ZoneScores zoneScores'
-        + ' on users.Username = zoneScores.Username and ZoneX = ? and ZoneY = ?'
-        + ' where users.Username = ?';
-    var parameters = [x, y, username];
+    var query = 'select sum(Score) from ZoneScores where username = ? and ZoneX = ? and ZoneY = ?';
+    var parameters = [username, x, y];
 
     client.query(query, parameters, function(error, result){
         if (!error) {
@@ -65,6 +63,15 @@ var getZoneUserScore = function(callback, username, x, y){
         }
 
         callback(error, score);
+    });
+};
+
+var updateZoneUserScore = function(callback, username, x, y, score){
+    var query = 'update ZoneScores set score = ? where username = ? and ZoneX = ? and ZoneY = ?';
+    var parameters = [score, username, x, y];
+
+    client.query(query, parameters, function(error, result){
+        callback(error);
     });
 };
 
@@ -221,6 +228,7 @@ module.exports = {
     getUser: getUser,
     getTotalUserScore: getTotalUserScore,
     getZoneUserScore: getZoneUserScore,
+    updateZoneUserScore: updateZoneUserScore,
     createUser: createUser,
     login: login,
     getZones: getZones,
