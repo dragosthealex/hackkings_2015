@@ -86,11 +86,9 @@ app.get('/register/:username/:email/:password/:confirm/:cityId', function(req, r
         }
 
         responseHelper.sendResponse(res, {
-            "User": {
-                "Username": username,
-                "Email": email,
-                "CityId": cityId
-            },
+            "Username": username,
+            "Email": email,
+            "CityId": cityId,
             "Token": ""
         });
     }, username, email, password, cityId);
