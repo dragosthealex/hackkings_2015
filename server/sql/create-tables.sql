@@ -50,8 +50,8 @@ create table ZoneChallenges (
     ZoneX int not null,
     ZoneY int not null,
     ChallengeId int not null,
-    primary key (ZoneX, ZoneY, CharityId),
-    foreign key (CharityId) references Charities(Id),
+    primary key (ZoneX, ZoneY, ChallengeId),
+    foreign key (ChallengeId) references Challenges(Id),
     foreign key (ZoneX) references Zones(X),
     foreign key (ZoneY) references Zones(Y)
 );

@@ -52,25 +52,23 @@ app.get('/users/:username/score', function(req, res){
             return;
         }
 
-        // TO-DO.
-
         responseHelper.sendResponse(res, score);
     }, username);
 });
 
 app.get('/users/:username/score/:x/:y', function(req, res){
+    var x = req.params.x;
+    var y = req.params.y;
     var username = req.params.username;
 
-    databaseService.getZoneUserScore(function(error, user){
+    databaseService.getZoneUserScore(function(error, score){
         if (error){
             responseHelper.sendResponse(res, null, 500);
 
             return;
         }
 
-        // TO-DO.
-
-        responseHelper.sendResponse(res, user);
+        responseHelper.sendResponse(res, score);
     }, username, x, y);
 });
 
@@ -139,6 +137,9 @@ app.get('/zones', function(req, res){
 });
 
 app.get('/zones/:x/:y/challenges', function(req, res){
+    var x = req.params.x;
+    var y = req.params.y;
+
     databaseService.getZoneChallenges(function(error, challenges){
         if (error){
             responseHelper.sendResponse(res, null, 500)
@@ -151,6 +152,9 @@ app.get('/zones/:x/:y/challenges', function(req, res){
 });
 
 app.get('/zones/:x/:y/charities', function(req, res){
+    var x = req.params.x;
+    var y = req.params.y;
+
     databaseService.getZoneCharities(function(error, charities){
         if (error){
             responseHelper.sendResponse(res, null, 500)
@@ -163,6 +167,9 @@ app.get('/zones/:x/:y/charities', function(req, res){
 });
 
 app.get('/zones/:x/:y/score', function(req, res){
+    var x = req.params.x;
+    var y = req.params.y;
+
     databaseService.getZoneScore(function(error, score){
         if (error){
             responseHelper.sendResponse(res, null, 500)
@@ -172,6 +179,72 @@ app.get('/zones/:x/:y/score', function(req, res){
         
         responseHelper.sendResponse(res, score);
     }, x, y);
+});
+
+app.get('/charities/:id', function(req, res){
+    var id = req.params.id;
+
+    databaseService.getCharity(function(error, charity){
+        if (error){
+            responseHelper.sendResponse(res, null, 500);
+
+            return;
+        }
+
+        // Determines whether a charity with the specified id exists.
+        if (!charity){
+            responseHelper.sendResponse(res, null, 404);
+
+            return;
+        }
+
+        responseHelper.sendResponse(res, charity);
+    }, id);
+});
+
+app.get('/charities', function(req, res){
+    databaseService.getCharities(function(error, charities){
+        if (error){
+            responseHelper.sendResponse(res, null, 500)
+
+            return;
+        }
+        
+        responseHelper.sendResponse(res, charities);
+    });
+});
+
+app.get('/cities/:id', function(req, res){
+    var id = req.params.id;
+
+    databaseService.getCity(function(error, city){
+        if (error){
+            responseHelper.sendResponse(res, null, 500);
+
+            return;
+        }
+
+        // Determines whether a city with the specified id exists.
+        if (!city){
+            responseHelper.sendResponse(res, null, 404);
+
+            return;
+        }
+
+        responseHelper.sendResponse(res, city);
+    }, id);
+});
+
+app.get('/cities', function(req, res){
+    databaseService.getCities(function(error, cities){
+        if (error){
+            responseHelper.sendResponse(res, null, 500)
+
+            return;
+        }
+        
+        responseHelper.sendResponse(res, cities);
+    });
 });
 
 app.listen(process.env.PORT || 1234);

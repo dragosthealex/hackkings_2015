@@ -38,6 +38,36 @@ var getUser = function(callback, username){
     }); 
 };
 
+var getTotalUserScore = function(callback, username){
+    var query = 'select sum(Score) from Users users join ZoneScores zoneScores'
+        + ' on users.Username = zoneScores.Username'
+        + ' where users.Username = ?';
+    var parameters = [username];
+
+    client.query(query, parameters, function(error, result){
+        if (!error) {
+            var score = result[0];
+        }
+
+        callback(error, score);
+    });
+};
+
+var getZoneUserScore = function(callback, username, x, y){
+    var query = 'select sum(Score) from Users users join ZoneScores zoneScores'
+        + ' on users.Username = zoneScores.Username and ZoneX = ? and ZoneY = ?'
+        + ' where users.Username = ?';
+    var parameters = [x, y, username];
+
+    client.query(query, parameters, function(error, result){
+        if (!error) {
+            var score = result[0];
+        }
+
+        callback(error, score);
+    });
+};
+
 var createUser = function(callback, username, email, password, cityId){
     var query = 'insert into Users (username, email, password, cityId) VALUES(?, ?, ?, ?)';
     var parameters = [username, email, password, cityId];
@@ -73,19 +103,6 @@ var getZones = function(callback){
         }
 
         callback(error, zones);
-    });
-};
-
-var getZone = function(callback, id){
-    var query = 'select * from Zones where id = ?';
-    var parameters = [id];
-
-    client.query(query, parameters, function(error, result){
-        if (!error) {
-            var zone = result[0];
-        }
-
-        callback(error, zone);
     });
 };
 
@@ -147,13 +164,69 @@ var getCity = function(callback, id){
     }); 
 };
 
+var getZoneChallenges = function(callback, x, y){
+    var query = 'select Id, Name, Description, Url from Challenges challenges join ZoneChallenges zoneChallenges'
+        + ' on challenges.Id = zoneChallenges.ChallengeId'
+        + ' where ZoneX = ? and ZoneY = ?';
+    var parameters = [x, y];
+
+    client.query(query, parameters, function(error, result){
+        if (!error) {
+            var challenges = [];
+
+            for (key in result) {
+                challenges.push(result[key]);
+            }
+        }
+
+        callback(error, challenges);
+    });
+};
+
+var getZoneCharities = function(callback, x, y){
+    var query = 'select Id, Name, Description, Url, LogoUrl, JustGivingUrl'
+        + ' from Charities charities join ZoneCharities zoneCharities'
+        + ' on charities.Id = zoneCharities.CharityId'
+        + ' where ZoneX = ? and ZoneY = ?';
+    var parameters = [x, y];
+
+    client.query(query, parameters, function(error, result){
+        if (!error) {
+            var charities = [];
+
+            for (key in result) {
+                charities.push(result[key]);
+            }
+        }
+
+        callback(error, charities);
+    });
+};
+
+var getZoneScore = function(callback, x, y){
+    var query = 'select sum(Score) from ZoneScores where ZoneX = ? and ZoneY = ?';
+    var parameters = [x, y];
+
+    client.query(query, parameters, function(error, result){
+        if (!error) {
+            var score = result[0];
+        }
+
+        callback(error, score);
+    });
+};
+
 module.exports = {
     getUsers: getUsers,
     getUser: getUser,
+    getTotalUserScore: getTotalUserScore,
+    getZoneUserScore: getZoneUserScore,
     createUser: createUser,
     login: login,
     getZones: getZones,
-    getZone: getZone,
+    getZoneChallenges: getZoneChallenges,
+    getZoneCharities: getZoneCharities,
+    getZoneScore: getZoneScore,
     getCharities: getCharities,
     getCharity: getCharity,
     getCities: getCities,
