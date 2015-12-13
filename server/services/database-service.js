@@ -43,6 +43,7 @@ var createUser = function(callback, username, email, password, cityId){
     var parameters = [username, email, password, cityId];
 
     client.query(query, parameters, function(error, result){
+        console.log(error.message);
         callback(error);
     });
 };
