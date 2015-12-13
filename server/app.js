@@ -60,7 +60,7 @@ app.get('/login/:username/:password', function(req, res){
             return;
         }
 
-        responseHelper.sendResponse(res, { 'Token': '' });
+        responseHelper.sendResponse(res, user);
     }, username, password);
 });
 
