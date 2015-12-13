@@ -1,5 +1,6 @@
 var app = require('express')();
 var cors = require('cors');
+var braintreeService = require('./services/braintree-service');
 var databaseService = require('./services/database-service');
 var responseHelper = require('./helpers/response-helper');
 
@@ -8,6 +9,32 @@ app.use(cors());
 
 // Makes json objects prettier.
 app.set('json spaces', 4);
+
+app.get('/braintree/token', function(req, res){
+    braintree.getClientToken(function(error, response){
+        if (error){
+            responseHelper.sendResponse(res, null, 500);
+
+            return;
+        }
+
+        responseHelper.sendResponse(res, { 'Token': response.clientToken });
+    });
+});
+
+app.get('/braintree/checkout/:nonce', function(req, res){
+    var nonce = req.params.nonce;
+
+    braintree.checkout(function(error, response){
+        if (error){
+            responseHelper.sendResponse(res, null, 500);
+
+            return;
+        }
+
+        responseHelper.sendResponse(res, response);
+    });
+});
 
 app.get('/users/:username', function(req, res){
     var username = req.params.username;

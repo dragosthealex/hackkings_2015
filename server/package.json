@@ -19,6 +19,7 @@
     "url": "https://github.com/andreimuntean/GreatUniHack2015"
   },
   "dependencies": {
+    "braintree": "*",
     "cors": "*",
     "express": "*",
     "mysql": "*"
