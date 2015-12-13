@@ -1,3 +1,8 @@
+insert into Challenges values (
+    1, "Tic Tac Toe", "Lorem ipsum dolor sit amet", "https://www.google.com/"
+);
+
+
 insert into Charities values (
 	2069,
 	"Sample Reporting Charity",
@@ -128,6 +133,11 @@ insert into Zones values(32747, 21790);
 insert into Zones values(32746, 21791);
 
 insert into Zones values(32747, 21791);
+
+
+insert into ZoneChallenges values (
+    32746, 21790, 1
+);
 
 
 insert into ZoneCharities values(32746, 21790, 2069);
