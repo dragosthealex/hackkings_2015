@@ -13,7 +13,7 @@ var getClientToken = function(callback){
 
 var checkout = function(callback, nonce){
     gateway.transaction.sale({
-        amount: '20.00',
+        amount: '3.00',
         paymentMethodNonce: nonce
     }, callback);
 };
