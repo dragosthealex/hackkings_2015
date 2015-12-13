@@ -7,6 +7,9 @@ var responseHelper = require('./helpers/response-helper');
 // Enables cross-origin resource sharing.
 app.use(cors());
 
+// Enables support for urlencoded POST requests.
+app.use(bodyParser.urlencoded({ extended: false }));
+
 // Makes json objects prettier.
 app.set('json spaces', 4);
 
@@ -22,8 +25,9 @@ app.get('/braintree/token', function(req, res){
     });
 });
 
-app.get('/braintree/checkout/:nonce', function(req, res){
-    var nonce = req.params.nonce;
+app.post('/braintree/checkout', function(req, res){
+    var nonce = req.body.nonce;
+    var amount = req.body.amount;
 
     braintreeService.checkout(function(error, response){
         if (error){
@@ -33,7 +37,7 @@ app.get('/braintree/checkout/:nonce', function(req, res){
         }
 
         responseHelper.sendResponse(res, response);
-    });
+    }, nonce, amount);
 });
 
 app.get('/users/:username', function(req, res){
