@@ -13,10 +13,10 @@ var getUsers = function(callback){
     var query = 'select * from Users';
 
     client.query(query, function(error, result){
-        if (!error) {
+        if (!error){
             var users = [];
 
-            for (key in result) {
+            for (key in result){
                 users.push(result[key]);
             }
         }
@@ -30,7 +30,7 @@ var getUser = function(callback, username){
     var parameters = [username];
 
     client.query(query, parameters, function(error, result){
-        if (!error) {
+        if (!error){
             var user = result[0];
         }
 
@@ -39,13 +39,13 @@ var getUser = function(callback, username){
 };
 
 var getTotalUserScore = function(callback, username){
-    var query = 'select sum(Score) from Users users join ZoneScores zoneScores'
+    var query = 'select sum(Score) as Score from Users users join ZoneScores zoneScores'
         + ' on users.Username = zoneScores.Username'
         + ' where users.Username = ?';
     var parameters = [username];
 
     client.query(query, parameters, function(error, result){
-        if (!error) {
+        if (!error){
             var score = result[0];
         }
 
@@ -54,11 +54,11 @@ var getTotalUserScore = function(callback, username){
 };
 
 var getZoneUserScore = function(callback, username, x, y){
-    var query = 'select sum(Score) from ZoneScores where username = ? and ZoneX = ? and ZoneY = ?';
+    var query = 'select sum(Score) as Score from ZoneScores where username = ? and ZoneX = ? and ZoneY = ?';
     var parameters = [username, x, y];
 
     client.query(query, parameters, function(error, result){
-        if (!error) {
+        if (!error){
             var score = result[0];
         }
 
@@ -67,11 +67,17 @@ var getZoneUserScore = function(callback, username, x, y){
 };
 
 var updateZoneUserScore = function(callback, username, x, y, score){
-    var query = 'update ZoneScores set score = ? where username = ? and ZoneX = ? and ZoneY = ?';
-    var parameters = [score, username, x, y];
+    var query = 'insert into ZoneScores select ?, ?, ?, 0 from Dual'
+        + ' where not exists (select Username from ZoneScores where username = ?);';
+    var parameters = [username, x, y, username];
 
     client.query(query, parameters, function(error, result){
-        callback(error);
+        query = 'update ZoneScores set Score = ? where Username = ? and ZoneX = ? and ZoneY = ?';
+        parameters = [score, username, x, y];
+
+        client.query(query, parameters, function(error, result){
+            callback(error);
+        });
     });
 };
 
@@ -88,8 +94,8 @@ var login = function(callback, username, password){
     var query = 'select * from Users where username = ? and password = ?';
     var parameters = [username, password];
 
-    client.query(query, parameters, function(error, result) {
-        if (!error) {
+    client.query(query, parameters, function(error, result){
+        if (!error){
             var user = result[0];
         }
 
@@ -101,10 +107,10 @@ var getZones = function(callback){
     var query = 'select * from Zones';
 
     client.query(query, function(error, result){
-        if (!error) {
+        if (!error){
             var zones = [];
 
-            for (key in result) {
+            for (key in result){
                 zones.push(result[key]);
             }
         }
@@ -117,10 +123,10 @@ var getCharities = function(callback){
     var query = 'select * from Charities';
 
     client.query(query, function(error, result){
-        if (!error) {
+        if (!error){
             var charities = [];
 
-            for (key in result) {
+            for (key in result){
                 charities.push(result[key]);
             }
         }
@@ -134,7 +140,7 @@ var getCharity = function(callback, id){
     var parameters = [id];
 
     client.query(query, parameters, function(error, result){
-        if (!error) {
+        if (!error){
             var charity = result[0];
         }
 
@@ -146,10 +152,10 @@ var getCities = function(callback){
     var query = 'select * from Cities';
 
     client.query(query, function(error, result){
-        if (!error) {
+        if (!error){
             var cities = [];
 
-            for (key in result) {
+            for (key in result){
                 cities.push(result[key]);
             }
         }
@@ -163,7 +169,7 @@ var getCity = function(callback, id){
     var parameters = [id];
 
     client.query(query, parameters, function(error, result){
-        if (!error) {
+        if (!error){
             var city = result[0];
         }
 
@@ -178,10 +184,10 @@ var getZoneChallenges = function(callback, x, y){
     var parameters = [x, y];
 
     client.query(query, parameters, function(error, result){
-        if (!error) {
+        if (!error){
             var challenges = [];
 
-            for (key in result) {
+            for (key in result){
                 challenges.push(result[key]);
             }
         }
@@ -198,10 +204,10 @@ var getZoneCharities = function(callback, x, y){
     var parameters = [x, y];
 
     client.query(query, parameters, function(error, result){
-        if (!error) {
+        if (!error){
             var charities = [];
 
-            for (key in result) {
+            for (key in result){
                 charities.push(result[key]);
             }
         }
@@ -211,11 +217,11 @@ var getZoneCharities = function(callback, x, y){
 };
 
 var getZoneScore = function(callback, x, y){
-    var query = 'select sum(Score) from ZoneScores where ZoneX = ? and ZoneY = ?';
+    var query = 'select sum(Score) as Score from ZoneScores where ZoneX = ? and ZoneY = ?';
     var parameters = [x, y];
 
     client.query(query, parameters, function(error, result){
-        if (!error) {
+        if (!error){
             var score = result[0];
         }
 
